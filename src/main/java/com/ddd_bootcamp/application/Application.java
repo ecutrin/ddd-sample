@@ -25,5 +25,10 @@ public class Application {
         System.out.println("lineItems = " + items);
         System.out.println("----------------------------------------");
 
+        List<Product> removedProducts = cart.getRemovedProducts();
+
+        System.out.println("----------------------------------------");
+        System.out.println("removed Products = " + removedProducts);
+        System.out.println("----------------------------------------");
     }
 }
