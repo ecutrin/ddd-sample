@@ -29,4 +29,17 @@ public class Item {
                 ", quantity=" + quantity +
                 '}';
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (!(obj instanceof Item))
+            return false;
+        if (obj == this)
+            return true;
+        return this.getProduct().equals(((Item) obj).getProduct());
+    }
+    @Override
+    public int hashCode() {
+        return this.getProduct().hashCode();
+    }
 }
