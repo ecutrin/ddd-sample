@@ -18,6 +18,7 @@ public class Application {
 
         cart.remove(itemApplePencil);
 
+
         System.out.println("Cart = " + cart);
         List<Item> items = cart.getLineItems();
 
