@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cart {
-    private List<LineItem> lineItems = new ArrayList<>();
+    private List<Item> items = new ArrayList<>();
 
-    public void add(LineItem lineItem) {
-        lineItems.add(lineItem);
+    public void add(Item item) {
+        items.add(item);
     }
 
-    public List<LineItem> getLineItems() {
-        return lineItems;
+    public List<Item> getLineItems() {
+        return items;
     }
 
     @Override
     public String toString() {
         return "Cart{" +
-                "products=" + lineItems +
+                "products=" + items +
                 '}';
     }
 }
