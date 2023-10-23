@@ -16,6 +16,8 @@ public class Application {
         Item itemSonyHeadphone = new Item(product2, 1);
         cart.add(itemSonyHeadphone);
 
+        cart.remove(itemApplePencil);
+
         System.out.println("Cart = " + cart);
         List<Item> items = cart.getLineItems();
 
