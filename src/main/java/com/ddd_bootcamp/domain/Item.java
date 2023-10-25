@@ -1,5 +1,7 @@
 package com.ddd_bootcamp.domain;
 
+import java.util.Objects;
+
 public class Item {
     private Product product;
     private int quantity;
@@ -9,37 +11,32 @@ public class Item {
         this.quantity = quantity;
     }
 
-    public Item(Product product) {
-        this.product = product;
-        this.quantity = 1;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return quantity == item.quantity && product.equals(item.product);
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public int getQuantity() {
-        return quantity;
+    @Override
+    public int hashCode() {
+        return Objects.hash(product, quantity);
     }
 
     @Override
     public String toString() {
-        return "LineItem{" +
+        return "Item{" +
                 "product=" + product +
                 ", quantity=" + quantity +
                 '}';
     }
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) return false;
-        if (!(obj instanceof Item))
-            return false;
-        if (obj == this)
-            return true;
-        return this.getProduct().equals(((Item) obj).getProduct());
+
+    public String getProductName() {
+        return product.getName();
     }
-    @Override
-    public int hashCode() {
-        return this.getProduct().hashCode();
+
+    public int getQuantity() {
+        return quantity;
     }
 }
