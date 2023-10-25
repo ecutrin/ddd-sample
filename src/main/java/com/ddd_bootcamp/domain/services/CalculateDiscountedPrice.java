@@ -4,7 +4,7 @@ import com.ddd_bootcamp.domain.Price;
 
 import java.util.Map;
 
-public class DiscountedPriceCalculator {
+public class CalculateDiscountedPrice {
 
     private static final Map<String, Price> competitorPrices;
     static {

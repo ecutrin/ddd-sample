@@ -1,7 +1,7 @@
 package com.ddd_bootcamp.application;
 
 import com.ddd_bootcamp.domain.*;
-import com.ddd_bootcamp.domain.services.DiscountedPriceCalculator;
+import com.ddd_bootcamp.domain.services.CalculateDiscountedPrice;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class Application {
 
         Product headphone1 = new Product(
                 "Sony Wireless headphone",
-                DiscountedPriceCalculator.forProduct("Sony Wireless headphone")
+                CalculateDiscountedPrice.forProduct("Sony Wireless headphone")
         );
 
         Item headphoneItem1 = new Item(headphone1,1);
