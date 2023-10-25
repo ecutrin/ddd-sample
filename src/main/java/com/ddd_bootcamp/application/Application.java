@@ -2,6 +2,7 @@ package com.ddd_bootcamp.application;
 
 import com.ddd_bootcamp.domain.Cart;
 import com.ddd_bootcamp.domain.Item;
+import com.ddd_bootcamp.domain.Price;
 import com.ddd_bootcamp.domain.Product;
 
 import java.util.List;
@@ -14,10 +15,10 @@ public class Application {
         Cart cart1 = new Cart();
         Cart cart2 = new Cart();
 
-        Product headphone1 = new Product("Sony Wireless headphone");
+        Product headphone1 = new Product("Sony Wireless headphone", new Price(10f));
         Item headphoneItem1 = new Item(headphone1,1);
 
-        Product headphone2 = new Product("Sony Wireless headphone");
+        Product headphone2 = new Product("Sony Wireless headphone", new Price(10f));
         Item headphoneItem2= new Item(headphone2,1);
 
         cart1.add(headphoneItem1);
@@ -36,11 +37,11 @@ public class Application {
     private static void codeProblem1to5() {
         Cart cart = new Cart();
 
-        Product headphone = new Product("Sony Wireless headphone");
+        Product headphone = new Product("Sony Wireless headphone", new Price(10f));
         Item headphoneItem = new Item(headphone,1);
         cart.add(headphoneItem);
 
-        Product applePencil = new Product("Apple Pencil");
+        Product applePencil = new Product("Apple Pencil", new Price(10f));
         Item applePencilItem = new Item(applePencil, 2);
         cart.add(applePencilItem);
 
@@ -49,7 +50,7 @@ public class Application {
         List<Item> items = cart.getItems();
         System.out.println("items = " + items);
 
-        Product applePencil1 = new Product("Apple Pencil");
+        Product applePencil1 = new Product("Apple Pencil", new Price(10f));
         Item applePencilItem1 = new Item(applePencil1, 2);
 
         cart.remove(applePencilItem1);

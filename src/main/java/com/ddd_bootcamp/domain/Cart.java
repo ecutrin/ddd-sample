@@ -40,7 +40,7 @@ public class Cart implements Entity<Cart> {
 
     private void apply(ItemAddedToCartEvent event) {
         events.add(event);
-        this.items.add(new Item(new Product(event.getProductName()), event.getQuantity()));
+        this.items.add(new Item(new Product(event.getProductName(), new Price(10f)), event.getQuantity()));
     }
 
     private void apply(ItemRemovedFromCartEvent event) {
