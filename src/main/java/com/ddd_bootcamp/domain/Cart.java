@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 public class Cart implements Entity<Cart> {
 
     private CartId cartId;
+    private boolean isCheckedOut = false;
     private List<DomainEvent> events = new ArrayList<>();
     private List<Item> items = new ArrayList<>();
 
@@ -83,5 +84,9 @@ public class Cart implements Entity<Cart> {
                 "cartId=" + cartId +
                 ", items=" + items +
                 '}';
+    }
+
+    public void checkOut() {
+        this.isCheckedOut = true;
     }
 }
