@@ -1,18 +1,20 @@
 package com.ddd_bootcamp.domain;
 
+import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.Objects;
 
 public class Price {
-    private Currency currency = Currency.getInstance("USD");
-    private float value;
+    private BigDecimal value;
+    private Currency currency;
 
-    public Price(float value) {
+    public Price(BigDecimal value, Currency currency) {
         this.value = value;
+        this.currency = currency;
     }
 
-    public float getValue() {
-        return value;
+    public Price reduceByPercent(int discountPercentage) {
+        return new Price(value.subtract(value.divide(new BigDecimal(discountPercentage))), Currency.getInstance("USD"));
     }
 
     @Override
@@ -20,19 +22,20 @@ public class Price {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Price price = (Price) o;
-        return Float.compare(price.value, value) == 0 && Objects.equals(currency, price.currency);
+        return Objects.equals(value, price.value) &&
+                Objects.equals(currency, price.currency);
     }
-
     @Override
     public int hashCode() {
-        return Objects.hash(currency, value);
+        return Objects.hash(value, currency);
     }
+
 
     @Override
     public String toString() {
         return "Price{" +
-                "currency=" + currency +
-                ", value=" + value +
+                "value=" + value +
+                ", currency=" + currency +
                 '}';
     }
 }

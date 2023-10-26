@@ -1,6 +1,9 @@
 package com.ddd_bootcamp.domain;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Item {
     private Product product;
@@ -32,6 +35,10 @@ public class Item {
                 '}';
     }
 
+    public Product getProduct() {
+        return product;
+    }
+
     public String getProductName() {
         return product.getName();
     }
@@ -40,7 +47,12 @@ public class Item {
         return quantity;
     }
 
-    public Product getProduct() {
-        return product;
+    public Price getProductPrice() {
+        return product.getPrice();
+    }
+
+    public List<Product> getFlattenedProducts() {
+        return IntStream.range(0, quantity).mapToObj(value ->
+                new Product(getProductName(), getProductPrice())).collect(Collectors.toList());
     }
 }

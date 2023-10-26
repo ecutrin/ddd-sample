@@ -1,12 +1,18 @@
 package com.ddd_bootcamp.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
-    private List<Product> products = new ArrayList<>();
+    private List<Product> products;
 
-    public void addProduct(Product product) {
-        products.add(product);
+    public Order(List<Product> products) {
+        this.products = products;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "products=" + products +
+                '}';
     }
 }

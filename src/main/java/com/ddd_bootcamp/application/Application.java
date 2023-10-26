@@ -1,90 +1,68 @@
 package com.ddd_bootcamp.application;
 
-import com.ddd_bootcamp.domain.*;
-import com.ddd_bootcamp.domain.bank.Account;
-import com.ddd_bootcamp.domain.bank.Address;
-import com.ddd_bootcamp.domain.bank.Customer;
-import com.ddd_bootcamp.domain.services.CalculateDiscountedPrice;
+import com.ddd_bootcamp.domain.Cart;
+import com.ddd_bootcamp.domain.Item;
+import com.ddd_bootcamp.domain.Price;
+import com.ddd_bootcamp.domain.Product;
+import com.ddd_bootcamp.domain.domain_service.CheckOutService;
+import com.ddd_bootcamp.domain.domain_service.CompetitorBasedPricer;
 
+import java.math.BigDecimal;
+import java.util.Currency;
 import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-//        codeProblem1to5();
-//
-//        //Code Problem 6
-//        Cart cart1 = new Cart();
-//        Cart cart2 = new Cart();
-//
-//        Product headphone1 = new Product(
-//                "Sony Wireless headphone",
-//                CalculateDiscountedPrice.forProduct("Sony Wireless headphone")
-//        );
-//
-//        Item headphoneItem1 = new Item(headphone1,1);
-//
-//        Product headphone2 = new Product("Sony Wireless headphone", new Price(10f));
-//        Item headphoneItem2= new Item(headphone2,1);
-//
-//        cart1.add(headphoneItem1);
-//        cart2.add(headphoneItem2);
-//
-//        System.out.println("----------------------------------------");
-//        System.out.print("headphone 1");
-//        System.out.println(headphone1);
-//        System.out.println("----------------------------------------");
-//        System.out.print("cart1.equals(cart2) :");
-//        System.out.println(cart1.equals(cart2)? "true=Carts are same " : "false=Carts are different");
-//        System.out.println("----------------------------------------");
-//        System.out.print("cart1.hasSameIdentityAs(cart2) :");
-//        System.out.println(cart1.hasSameIdentityAs(cart2)? "true=Carts are same"  : "false=Carts are different");
-//        System.out.println("----------------------------------------");
-        Address address = new Address("Barcelona");
-        Account account = new Account(address);
-        Customer customer = new Customer(address, List.of(account));
-
-        System.out.println("----------------------------------------");
-        System.out.println(customer);
-        System.out.println(customer.getAccounts());
-        System.out.println("----------------------------------------");
-
-        customer.updateAddress(new Address("Mumbai"));
-
-        System.out.println("----------------------------------------");
-        System.out.println(customer);
-        System.out.println(customer.getAccounts());
-        System.out.println("----------------------------------------");
-
-    }
-
-    private static void codeProblem1to5() {
         Cart cart = new Cart();
 
-        Product headphone = new Product("Sony Wireless headphone", new Price(10f));
-        Item headphoneItem = new Item(headphone,1);
+        Product headphone = new Product("Sony Wireless headphone",
+                new Price(BigDecimal.valueOf(10), Currency.getInstance("USD")));
+        Item headphoneItem = new Item(headphone, 1);
         cart.add(headphoneItem);
 
-        Product applePencil = new Product("Apple Pencil", new Price(10f));
+        Product applePencil = new Product("Apple Pencil",
+                new Price(BigDecimal.valueOf(100), Currency.getInstance("USD")));
         Item applePencilItem = new Item(applePencil, 2);
         cart.add(applePencilItem);
 
 
         System.out.println("Cart = " + cart);
-        List<Item> items = cart.getItems();
-        System.out.println("items = " + items);
 
-        Product applePencil1 = new Product("Apple Pencil", new Price(10f));
-        Item applePencilItem1 = new Item(applePencil1, 2);
+        System.out.println("-------------------------------------------------------------------");
 
-        cart.remove(applePencilItem1);
+        System.out.println("Cart checked out = " + cart.checkOut());
+        //System.out.println("Cart checked out = " + CheckOutService.checkOut(cart));
 
-        System.out.println("----------------------------------------");
-        System.out.println("After Removing Apple Pencil with 2 quantity");
-        System.out.println("Cart = " + cart);
-        List<Item> items1 = cart.getItems();
-        System.out.println("items = " + items1);
+        System.out.println("-------------------------------------------------------------------");
 
-        System.out.println("----------------------------------------");
-        System.out.println("Removed product names = " + cart.removedProductNames());
+        //codeProblem8();
+        //Code Problem 6
+        //codeProblem6();
+
+    }
+
+    private static void codeProblem8() {
+        System.out.println("-------------------------------------------------------------------");
+        System.out.println("Discounted Price for Apple Pencil: " + CompetitorBasedPricer.getPrice("Apple Pencil"));
+        System.out.println("Discounted Price for Sony Wireless headphone: " + CompetitorBasedPricer.getPrice("Sony Wireless headphone"));
+        System.out.println("-------------------------------------------------------------------");
+    }
+
+
+    private static void codeProblem6() {
+        Cart cart1 = new Cart();
+        Cart cart2 = new Cart();
+
+        Product headphone1 = new Product("Sony Wireless headphone", new Price(BigDecimal.valueOf(10), Currency.getInstance("USD")));
+        Item headphoneItem1 = new Item(headphone1, 1);
+
+        Product headphone2 = new Product("Sony Wireless headphone", new Price(BigDecimal.valueOf(10), Currency.getInstance("USD")));
+        Item headphoneItem2 = new Item(headphone2, 1);
+
+        cart1.add(headphoneItem1);
+        cart2.add(headphoneItem2);
+
+        System.out.println(cart1.equals(cart2) ? "Carts are same" : "Carts are different");
+        System.out.println(cart1.hasSameIdentityAs(cart2) ? "Carts are same" : "Carts are different");
     }
 }
